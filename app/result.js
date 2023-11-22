@@ -22,10 +22,25 @@ const generateGridSpotPositions = ({ lightCount, roomX, roomY }) => {
   return newSpots
 };
 
+const scaleMeters = (size, maxSize) => {
+  const scales =  [100, 50, 20, 10, 5, 2, 1, 0.5]
+
+  return scales.find((scale) => {
+    if (size * scale <= maxSize) {
+      return true
+    }
+  }) ?? 1
+}
+
 export default function Result({ roomX, roomY, lightCount, roomType }) {
-  const [width, height] = [roomX * 100, roomY * 100]
+  const scaleX = scaleMeters(roomX, window.innerWidth)
+  const scaleY = scaleMeters(roomY, window.innerHeight)
+  const [width, height] = [roomX * scaleX, roomY * scaleY]
   const spots = generateGridSpotPositions({ lightCount, roomX: width, roomY: height })
   const { t } = useTranslation()
+
+  const radius = Math.min(scaleX, scaleY) >= 10 ? 10 : 3
+
 
 
   return (
@@ -47,7 +62,7 @@ export default function Result({ roomX, roomY, lightCount, roomType }) {
               key={index}
               x={spot.x}
               y={spot.y}
-              radius={10}
+              radius={radius}
               fill='#ede902'
               str
             />
