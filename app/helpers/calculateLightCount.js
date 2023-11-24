@@ -1,8 +1,8 @@
-import { roomTypesLumenPerM2 } from "../constants/roomTypesLumenPerM2";
+import { roomTypesLuxPerM2 } from "../constants/roomTypesLuxPerM2";
 
-export const calculateLightCount = ({ roomX, roomY, roomZ, roomType, lumensByLight }) => {
-  const surface = roomX * roomY * roomZ;
-  const needLumens = surface * roomTypesLumenPerM2[roomType];
+export const calculateLightCount = ({ roomX, roomY, roomType, lumensByLight }) => {
+  const surface = roomX * roomY;
+  const needLumens = surface * roomTypesLuxPerM2[roomType];
   let lightCount = Math.ceil(needLumens / lumensByLight);
 
   if (lightCount % 2 !== 0) {

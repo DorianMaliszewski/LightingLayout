@@ -1,4 +1,4 @@
-import { roomTypesLumenPerM2 } from "./constants/roomTypesLumenPerM2"
+import { roomTypesLuxPerM2 } from "./constants/roomTypesLuxPerM2"
 import { useTranslation } from "./hooks/useTranslation"
 
 export const Form = ({ register, formState, onSubmit }) => {
@@ -12,7 +12,7 @@ export const Form = ({ register, formState, onSubmit }) => {
           <span className="label-text">{t('form.roomType.label')}</span>
         </label>
         <select type="text" {...register("roomType", { required: true })} id="roomType" placeholder={t('form.roomType.placeholder')} className="select select-bordered w-full ">
-        {Object.keys(roomTypesLumenPerM2).map((roomType) => (
+        {Object.keys(roomTypesLuxPerM2).map((roomType) => (
           <option value={roomType} key={roomType}>{t(`form.roomType.options.${roomType}`)}</option>
         ))}
     </select>
@@ -33,7 +33,7 @@ export const Form = ({ register, formState, onSubmit }) => {
         <label className="label">
           <span className="label-text">{t('form.roomZ.label')}</span>
         </label>
-        <input type="number" {...register("roomZ", { min: 0, required: true })} step={0.1} id="roomZ" placeholder={t('form.roomZ.placeholder')} className="input input-bordered w-full " />
+        <input type="number" {...register("roomZ", { min: 0, required: true, disabled: true })} disabled step={0.1} id="roomZ" placeholder={t('form.roomZ.placeholder')} className="input input-bordered w-full " />
       </div>
       <div className="form-control w-full col-span-12">
         <label className="label">

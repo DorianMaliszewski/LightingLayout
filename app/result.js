@@ -1,6 +1,6 @@
 "use client"
 import { Circle, Layer, Rect, Stage } from "react-konva";
-import { roomTypesLumenPerM2 } from "./constants/roomTypesLumenPerM2"
+import { roomTypesLuxPerM2 } from "./constants/roomTypesLuxPerM2"
 import { useTranslation } from "./hooks/useTranslation";
 
 // Fonction pour générer des positions en grille pour les spots sur le plafond
@@ -47,7 +47,7 @@ export default function Result({ roomX, roomY, lightCount, roomType }) {
     <div className="flex flex-col gap-8 items-center">
       <div className="w-full flex flex-col">
         <h2 className="text-3xl mb-4">{t('result.title')}</h2>
-        <p>{t("result.lumensInRoomType").replace('{value}', roomTypesLumenPerM2[roomType])}</p>
+        <p>{t("result.lumensInRoomType").replace('{value}', roomTypesLuxPerM2[roomType])}</p>
         <p>{t('result.numberOfLights').replace('{value}', lightCount)}</p>
       </div>
       <Stage className="bg-base-300 rounded" width={width} height={height}>
